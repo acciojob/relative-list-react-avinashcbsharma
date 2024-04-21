@@ -1,45 +1,20 @@
-import React, { useState } from 'react';
-
-const FruitSearch = ({ fruits }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-  const [filteredFruits, setFilteredFruits] = useState([]);
-
-  const handleSearch = (event) => {
-    const { value } = event.target;
-    setSearchTerm(value);
-
-    // Filter fruits based on the search term
-    const filteredResults = fruits.filter((fruit) =>
-      fruit.toLowerCase().includes(value.toLowerCase())
-    );
-    setFilteredFruits(filteredResults);
-  };
-
+export default function App() {
+  const relatives = [
+    'Grandma Alice',
+    'Uncle Bob',
+    'Aunt Carol',
+    'Cousin David',
+    'Niece Emily',
+  ];
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search fruits..."
-        onChange={handleSearch}
-        value={searchTerm}
-      />
-      <ul >
-        {filteredFruits.map((fruit, index) => (
-          <li key={`fruit-${index}`}>{fruit}</li>
+      <h1>Relatives to Visit</h1>
+    
+      <ol>
+        {relatives.map((relative, index) => (
+          <li key={`relativeListItem${index + 1}`}>{relative}</li>
         ))}
-      </ul>
+      </ol>
     </div>
   );
 };
-
-
-const fruitsArray =  ["apple", "banana", "cherry", "date", 'Grapes', 'Pineapple', "elderberry", 'Orange', "fig"]
-  
-export default function App() {
-  return (
-    <div>
-      <h1>Search item</h1>
-      <FruitSearch fruits={fruitsArray} />
-    </div>
-  );
-}
